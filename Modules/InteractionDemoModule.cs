@@ -56,9 +56,9 @@ namespace DNet_V3_Tutorial
             };
             // Options are added to the select menu. The option values can be generated on execution of the command. You can then use the value in the Handler for the select menu
             // to determine what to do next. An example would be including the ID of the user who made the selection in the value.
-            select.AddOption("abc", "abc_value");
-            select.AddOption("def", "def_value");
-            select.AddOption("ghi", "ghi_value");
+            select.AddOption("abc", "1");
+            select.AddOption("def", "2");
+            select.AddOption("ghi", "3");
 
             components.WithSelectMenu(select);
 
@@ -69,8 +69,18 @@ namespace DNet_V3_Tutorial
         [ComponentInteraction("menu1")]
         public async Task MenuHandler(string[] selections)
         {
-            // For the sake of demonstration, we only want the first value selected.
-            await RespondAsync($"You selected {selections.First()}");
+            if (selections.First() == "1")
+            {            
+                await RespondAsync("You selected first menu");
+            }
+            if (selections.First() == "2")
+            {
+                await RespondAsync("You selected second menu");
+            }
+            if (selections.First() == "3")
+            {
+                await RespondAsync("You selected third menu");
+            }
         }
     }
 }
